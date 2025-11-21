@@ -16,7 +16,7 @@
 
 Wifi通信の良好な環境にて実施してください。
 
-[ros1_lecture_noetic-202309.zip](https://github.com/KMiyawaki/ros1_lecture_noetic/archive/refs/tags/202309.zip)をダウンロードし展開してください。ここでは`%USERPROFILE%\Documents\ros1_lecture_noetic-202309`に展開したとします。
+[ros1_lecture_noetic_cuda-11.1.1.zip](https://github.com/KMiyawaki/ros1_lecture_noetic_cuda/archive/refs/heads/11.1.1.zip)をダウンロードし展開してください。ここでは`%USERPROFILE%\Documents\ros1_lecture_noetic_cuda-11.1.1`に展開したとします。
 
 なお、`%USERPROFILE%`は`Windows`の環境変数で`C:\Users\[ログインユーザ名]`に置き換えられます。  
 `Windows`のファイルエクスプローラーでアドレス欄に`%USERPROFILE%\Documents`と入力してエンターキーを押し、どのフォルダが開くかを確認してみてください。
@@ -43,7 +43,7 @@ Wifi通信の良好な環境にて実施してください。
 なお、ファイルパスの`\`バックスラッシュは![2022-12-11_102434.png](./images/yen.png)（円マーク）を意味しています。
 
 ```cmd
-cd %USERPROFILE%\Documents\ros1_lecture_noetic-202309
+cd %USERPROFILE%\Documents\ros1_lecture_noetic_cuda-11.1.1
 docker-compose pull
 ```
 
@@ -58,11 +58,11 @@ docker images
 ```
 
 次のように`REPOSITORY`に`ros1_noetic_lxde`、`TAG`に`202309`のイメージがダウンロードされていれば成功です。  
-`079608694118   7 days ago     3.2GB`の部分は多少異なる可能性があります。
+`330fc167cb1a       14.3GB         4.26GB`の部分は多少異なる可能性があります。
 
 ```cmd
-REPOSITORY                     TAG               IMAGE ID       CREATED        SIZE
-kmiyawaki20/ros1_noetic_lxde   202309            079608694118   7 days ago     3.75GB
+IMAGE                                                               ID             DISK USAGE   CONTENT SIZE   EXTRA
+kmiyawaki20/ros1_noetic_nvidia_cuda:11.1.1-devel-ubuntu20.04_lxde   330fc167cb1a       14.3GB         4.26GB    U   
 ```
 
 ## 起動
@@ -76,7 +76,7 @@ kmiyawaki20/ros1_noetic_lxde   202309            079608694118   7 days ago     3
 `Docker Desktop for Windows`の起動を確認できたら、次のコマンドを入力してください。
 
 ```cmd
-cd %USERPROFILE%\Documents\ros1_lecture_noetic-202309
+cd %USERPROFILE%\Documents\ros1_lecture_noetic_cuda-11.1.1
 docker-compose up
 ```
 
@@ -85,18 +85,33 @@ docker-compose up
 このコマンドを起動したターミナルは作業終了までは閉じないでください。
 
 ```cmd
-[+] Running 2/2
- - Volume "ros1_lecture_noetic-202309_ubuntu" Created 0.0s
- - Container ros1_lecture_noetic_202309       Created 0.9s
-Attaching to ros1_lecture_noetic_202309
-ros1_lecture_noetic_202309  |
-ros1_lecture_noetic_202309  | New '8957ffa115ee:1 (ubuntu)' desktop at :1 on machine 8957ffa115ee
-・・・
-ros1_lecture_noetic_202309  |   - Backgrounding (daemon)
-ros1_lecture_noetic_202309  | **********************************************
-ros1_lecture_noetic_202309  | * Open 'http://127.0.0.1:6080/vnc.html'      *
-ros1_lecture_noetic_202309  | * Or access '127.0.0.0:5901' via VNC viewer. *
-ros1_lecture_noetic_202309  | **********************************************
+[+] Running 3/3
+ ✔ Network ros1_lecture_noetic_cuda-1111_default  Created                                                                 0.0s
+ ✔ Volume ros1_lecture_noetic_cuda-1111_ubuntu    Created                                                                 0.0s
+ ✔ Container ros1_lecture_noetic_cuda_11.1.1      Created                                                                 0.2s
+Attaching to ros1_lecture_noetic_cuda_11.1.1
+ros1_lecture_noetic_cuda_11.1.1  | rm: cannot remove '/tmp': Permission denied
+ros1_lecture_noetic_cuda_11.1.1  | mkdir: cannot create directory '/tmp': File exists
+ros1_lecture_noetic_cuda_11.1.1  |
+ros1_lecture_noetic_cuda_11.1.1  | New '8948590e8876:1 (ubuntu)' desktop at :1 on machine 8948590e8876
+ros1_lecture_noetic_cuda_11.1.1  |
+ros1_lecture_noetic_cuda_11.1.1  | Starting applications specified in /home/ubuntu/.vnc/xstartup
+ros1_lecture_noetic_cuda_11.1.1  | Log file is /home/ubuntu/.vnc/8948590e8876:1.log
+ros1_lecture_noetic_cuda_11.1.1  |
+ros1_lecture_noetic_cuda_11.1.1  | Use xtigervncviewer -SecurityTypes None,TLSNone 8948590e8876:1 to connect to the VNC server.
+ros1_lecture_noetic_cuda_11.1.1  |
+ros1_lecture_noetic_cuda_11.1.1  | WebSocket server settings:
+ros1_lecture_noetic_cuda_11.1.1  |   - Listen on :80
+ros1_lecture_noetic_cuda_11.1.1  |   - Web server. Web root: /usr/share/novnc
+ros1_lecture_noetic_cuda_11.1.1  |   - No SSL/TLS support (no cert file)
+ros1_lecture_noetic_cuda_11.1.1  |   - Backgrounding (daemon)
+ros1_lecture_noetic_cuda_11.1.1  | **********************************************
+ros1_lecture_noetic_cuda_11.1.1  | * Open 'http://127.0.0.1:6080/vnc.html'      *
+ros1_lecture_noetic_cuda_11.1.1  | * Or access '127.0.0.0:5901' via VNC viewer. *
+ros1_lecture_noetic_cuda_11.1.1  | **********************************************
+ros1_lecture_noetic_cuda_11.1.1  | To run a command as administrator (user "root"), use "sudo <command>".
+ros1_lecture_noetic_cuda_11.1.1  | See "man sudo_root" for details.
+ros1_lecture_noetic_cuda_11.1.1  |
 ```
 
 任意のWEBブラウザで[http://127.0.0.1:6080/vnc.html](http://127.0.0.1:6080/vnc.html)に接続してください。  
